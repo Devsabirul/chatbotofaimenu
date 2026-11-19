@@ -2,260 +2,338 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#123b2b">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#153c2b">
 
 <title>Bella Ciao | AI Waiter</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+    --green: #1b7049;
+    --dark: #153c2b;
+    --cream: #f8faf6;
+    --text: #26382c;
+    --muted: #89958c;
+    --border: #e9eee8;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    --green: #176b45;
-    --dark: #123b2b;
-    --light: #f4f8f4;
-    --text: #1d2922;
-    --muted: #87938a;
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background: #f1f5f1;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: #edf2ec;
 }
+
+/* MAIN LAYOUT */
 
 .app {
     width: 100%;
-    max-width: 1050px;
-    height: 850px;
-    max-height: calc(100vh - 40px);
+    height: 100vh;
+    height: 100dvh;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1150px;
+    height: 100%;
+    max-height: 850px;
     display: grid;
-    grid-template-columns: 310px 1fr;
+    grid-template-columns: 300px minmax(0, 1fr);
     background: white;
     border-radius: 25px;
     overflow: hidden;
-    box-shadow: 0 20px 60px #173d281c;
+    box-shadow: 0 20px 70px rgba(20,50,30,.09);
 }
 
 /* SIDEBAR */
 
 .sidebar {
-    background: linear-gradient(150deg, #102f22, #176b45);
+    background:
+        radial-gradient(circle at 90% 10%, #2c7951 0%, transparent 35%),
+        linear-gradient(150deg, #102f21, #1a5939);
     color: white;
-    padding: 30px 25px;
+    padding: 32px 27px;
     display: flex;
     flex-direction: column;
 }
 
-.logo {
-    width: 50px;
-    height: 50px;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 46px;
+    height: 46px;
     background: #ffffff20;
+    border: 1px solid #ffffff25;
     border-radius: 15px;
     display: grid;
     place-items: center;
-    font-size: 25px;
+    font-size: 24px;
+}
+
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+}
+
+.brand-sub {
+    color: #b9d8c5;
+    font-size: 10px;
+    margin-top: 3px;
+    letter-spacing: 1px;
+}
+
+.hero {
+    margin-top: 65px;
 }
 
 .eyebrow {
-    margin-top: 35px;
     color: #b9d8c5;
     font-size: 10px;
     letter-spacing: 3px;
     text-transform: uppercase;
 }
 
-.sidebar h1 {
-    font-family: Georgia, serif;
-    font-size: 40px;
-    font-weight: normal;
-    margin-top: 12px;
-    line-height: 1.1;
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 43px;
+    line-height: 1.15;
+    font-weight: 500;
+    margin-top: 18px;
 }
 
-.description {
-    color: #d0e2d6;
+.hero p {
     font-size: 13px;
-    line-height: 1.8;
-    margin-top: 17px;
+    line-height: 1.9;
+    color: #d1e1d5;
+    margin-top: 18px;
 }
 
-.divider {
+.sidebar-divider {
     height: 1px;
-    background: #ffffff30;
-    margin: 30px 0;
+    background: #ffffff25;
+    margin: 35px 0;
 }
 
-.section-title {
+.sidebar-heading {
+    color: #b9d8c5;
     font-size: 10px;
     letter-spacing: 2px;
-    color: #b9d8c5;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
 }
 
 .feature {
     display: flex;
+    gap: 13px;
+    margin-bottom: 22px;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-    font-size: 12px;
-    line-height: 1.6;
 }
 
 .feature-icon {
-    width: 35px;
-    height: 35px;
-    background: #ffffff20;
-    border-radius: 10px;
+    width: 39px;
+    height: 39px;
+    background: #ffffff18;
+    border: 1px solid #ffffff20;
+    border-radius: 12px;
     display: grid;
     place-items: center;
-    font-size: 17px;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.feature strong {
+    font-size: 12px;
+}
+
+.feature p {
+    font-size: 10px;
+    color: #c2d9ca;
+    margin-top: 4px;
 }
 
 .sidebar-bottom {
     margin-top: auto;
 }
 
-.online {
+.online-badge {
     display: inline-flex;
-    align-items: center;
     gap: 9px;
+    align-items: center;
+    border: 1px solid #ffffff35;
     padding: 10px 14px;
-    border: 1px solid #ffffff40;
     border-radius: 30px;
     font-size: 11px;
 }
 
-.dot {
+.online-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: #7be3a0;
-}
-
-.sidebar-note {
-    margin-top: 15px;
-    color: #b9d8c5;
-    font-size: 10px;
-    line-height: 1.7;
+    background: #76e5a1;
 }
 
 /* CHAT AREA */
 
-.chat {
+.chat-area {
+    min-width: 0;
+    min-height: 0;
     display: flex;
     flex-direction: column;
-    min-width: 0;
+    overflow: hidden;
+    background: white;
 }
 
+/* HEADER */
+
 .header {
-    height: 85px;
-    border-bottom: 1px solid #edf0ed;
+    height: 80px;
+    min-height: 80px;
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 25px;
+    padding: 0 27px;
+    gap: 10px;
 }
 
-.restaurant {
+.restaurant-info {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.restaurant-avatar {
+.restaurant-icon {
     width: 45px;
     height: 45px;
-    background: #eaf4ed;
-    border-radius: 14px;
+    border-radius: 15px;
+    background: #edf5ee;
     display: grid;
     place-items: center;
     font-size: 22px;
+    flex-shrink: 0;
 }
 
 .restaurant-name {
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 800;
 }
 
 .restaurant-status {
-    font-size: 11px;
+    font-size: 10px;
     color: var(--muted);
     margin-top: 5px;
 }
 
-.badge {
-    background: #eaf4ed;
+.status-dot {
+    color: #28a366;
+}
+
+.ai-label {
+    background: #eff6ef;
     color: var(--green);
     padding: 9px 13px;
     border-radius: 20px;
-    font-size: 10px;
-    font-weight: bold;
+    font-size: 9px;
+    letter-spacing: 1px;
+    font-weight: 800;
+    white-space: nowrap;
 }
 
-/* MESSAGES */
+/* CHAT MESSAGES */
 
 .messages {
     flex: 1;
+    min-height: 0;
     overflow-y: auto;
-    padding: 25px;
-    background: #fcfdfc;
-    scroll-behavior: smooth;
+    overflow-x: hidden;
+    padding: 28px;
+    background: #fcfdfb;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #dbe5dc transparent;
+}
+
+.messages::-webkit-scrollbar {
+    width: 5px;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #dbe5dc;
+    border-radius: 10px;
 }
 
 .date-label {
     text-align: center;
-    font-size: 10px;
-    color: #9aa49d;
-    margin-bottom: 25px;
+    color: #a0aaa1;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
 }
 
 .message-row {
     display: flex;
+    gap: 11px;
     align-items: flex-end;
-    gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    width: 100%;
 }
 
 .message-row.user {
     justify-content: flex-end;
 }
 
-.message-avatar {
-    width: 30px;
-    height: 30px;
-    background: #eaf4ed;
-    border-radius: 10px;
+.avatar {
+    width: 34px;
+    height: 34px;
+    background: #edf5ee;
+    border-radius: 12px;
     display: grid;
     place-items: center;
     flex-shrink: 0;
 }
 
 .message-content {
-    max-width: 80%;
+    max-width: 78%;
+    min-width: 0;
 }
 
 .sender {
     font-size: 10px;
-    color: #87938a;
-    margin: 0 0 6px 3px;
+    font-weight: 700;
+    color: #89958b;
+    margin: 0 0 7px 4px;
 }
 
 .bubble {
-    padding: 13px 16px;
     background: #f0f5f0;
+    color: #34463a;
+    padding: 14px 17px;
     border-radius: 5px 17px 17px 17px;
     font-size: 13px;
-    line-height: 1.7;
-    color: #344139;
+    line-height: 1.8;
     overflow-wrap: anywhere;
     white-space: pre-wrap;
 }
@@ -268,182 +346,265 @@ body {
 
 .time {
     font-size: 9px;
-    color: #a4ada7;
-    margin: 6px 3px 0;
+    color: #a4aea5;
+    margin-top: 7px;
     text-align: right;
 }
 
 /* TYPING */
 
-.typing {
+.typing-bubble {
     display: flex;
     gap: 5px;
     align-items: center;
-    padding: 15px;
+    padding: 17px;
 }
 
-.typing span {
+.typing-bubble span {
     width: 6px;
     height: 6px;
-    background: #82948a;
+    background: #84988a;
     border-radius: 50%;
-    animation: bounce 1s infinite;
+    animation: typing 1s infinite;
 }
 
-.typing span:nth-child(2) {
+.typing-bubble span:nth-child(2) {
     animation-delay: .15s;
 }
 
-.typing span:nth-child(3) {
+.typing-bubble span:nth-child(3) {
     animation-delay: .3s;
 }
 
-@keyframes bounce {
-    0%, 60%, 100% {
-        transform: translateY(0);
-    }
-    30% {
-        transform: translateY(-5px);
-    }
+@keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
 }
 
 /* QUICK QUESTIONS */
 
 .suggestions {
-    padding: 0 25px 15px;
+    flex-shrink: 0;
+    padding: 0 27px 16px;
+    background: #fcfdfb;
 }
 
 .suggestion-title {
-    font-size: 10px;
-    color: #929e95;
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+    color: #929e94;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    margin-bottom: 11px;
 }
 
 .suggestion-list {
     display: flex;
     gap: 8px;
     overflow-x: auto;
-    padding-bottom: 5px;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.suggestion-list::-webkit-scrollbar {
+    display: none;
 }
 
 .suggestion {
     flex-shrink: 0;
-    border: 1px solid #e1eae2;
+    border: 1px solid #e0e9e0;
     background: white;
-    color: #45614e;
-    padding: 10px 13px;
-    border-radius: 30px;
+    color: #46634e;
+    padding: 10px 14px;
+    border-radius: 25px;
+    font-family: inherit;
     font-size: 10px;
     cursor: pointer;
 }
 
 .suggestion:hover {
-    background: #eaf4ed;
+    background: #edf6ed;
 }
 
-/* INPUT */
+/* INPUT AREA */
 
-.composer-area {
-    padding: 15px 25px 18px;
-    border-top: 1px solid #edf0ed;
+.input-area {
+    flex-shrink: 0;
+    padding: 15px 27px 18px;
+    border-top: 1px solid var(--border);
+    background: white;
 }
 
-.composer {
+.input-box {
+    width: 100%;
     display: flex;
-    gap: 10px;
     align-items: flex-end;
-    padding: 8px 9px 8px 15px;
-    background: #f8faf8;
-    border: 1px solid #e2eae3;
+    gap: 10px;
+    background: #f7f9f7;
+    border: 1px solid #e2eae2;
     border-radius: 17px;
+    padding: 8px 9px 8px 16px;
 }
 
-.composer:focus-within {
-    border-color: #8bb89a;
+.input-box:focus-within {
+    border-color: #91b99a;
+    box-shadow: 0 0 0 3px #1b704910;
 }
 
 textarea {
     flex: 1;
+    width: 100%;
+    min-width: 0;
     resize: none;
     border: none;
     outline: none;
     background: transparent;
     font-family: inherit;
-    font-size: 13px;
-    padding: 9px 0;
-    max-height: 100px;
-    min-height: 30px;
+    font-size: 16px;
+    color: var(--text);
+    padding: 11px 0;
+    line-height: 1.5;
+    max-height: 110px;
+    min-height: 40px;
+    overflow-y: auto;
+}
+
+textarea::placeholder {
+    color: #a0aaa2;
 }
 
 .send-btn {
-    width: 42px;
-    height: 42px;
+    width: 43px;
+    height: 43px;
     border: none;
     border-radius: 13px;
     background: var(--green);
     color: white;
     font-size: 19px;
     cursor: pointer;
-}
-
-.send-btn:hover {
-    background: var(--dark);
+    flex-shrink: 0;
 }
 
 .send-btn:disabled {
     opacity: .5;
+    cursor: not-allowed;
 }
 
-.hint {
+.footer-note {
     text-align: center;
-    color: #a1aaa4;
+    color: #a1aaa3;
     font-size: 9px;
     margin-top: 10px;
 }
 
+/* TABLET */
+
+@media(max-width: 850px) {
+    .container {
+        grid-template-columns: 230px minmax(0, 1fr);
+    }
+
+    .sidebar {
+        padding: 25px 20px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .messages {
+        padding: 22px;
+    }
+}
+
 /* MOBILE */
 
-@media(max-width: 700px) {
+@media(max-width: 600px) {
 
-    body {
-        padding: 0;
+    html, body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
     }
 
     .app {
+        width: 100%;
+        height: 100vh;
         height: 100dvh;
+        padding: 0;
+        display: block;
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
         max-height: none;
+        display: flex;
+        flex-direction: column;
         border-radius: 0;
-        grid-template-columns: 1fr;
+        box-shadow: none;
     }
 
     .sidebar {
         display: none;
     }
 
+    .chat-area {
+        flex: 1;
+        height: 0;
+        min-height: 0;
+        width: 100%;
+    }
+
     .header {
-        height: 75px;
-        padding: 12px 16px;
+        height: 65px;
+        min-height: 65px;
+        padding: 0 15px;
+    }
+
+    .restaurant-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .restaurant-name {
+        font-size: 13px;
+    }
+
+    .ai-label {
+        font-size: 8px;
+        padding: 8px 10px;
     }
 
     .messages {
-        padding: 20px 16px;
+        flex: 1;
+        min-height: 0;
+        padding: 18px 14px;
     }
 
     .message-content {
         max-width: 85%;
     }
 
+    .bubble {
+        font-size: 13px;
+        padding: 12px 14px;
+    }
+
     .suggestions {
-        padding: 0 16px 12px;
+        padding: 10px 14px 12px;
     }
 
-    .composer-area {
-        padding: 12px 16px max(12px, env(safe-area-inset-bottom));
+    .suggestion {
+        padding: 10px 13px;
     }
 
-    .badge {
-        font-size: 9px;
+    .input-area {
+        padding: 10px 12px;
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+
+    .footer-note {
+        font-size: 8px;
     }
 }
 </style>
@@ -451,110 +612,99 @@ textarea {
 
 <body>
 
-<div class="app">
+<div class="app" id="app">
 
-    <!-- SIDEBAR -->
+<div class="container">
 
     <aside class="sidebar">
 
-        <div class="logo">🍃</div>
+        <div class="brand">
+            <div class="brand-icon">🍃</div>
+            <div>
+                <div class="brand-name">Bella Ciao</div>
+                <div class="brand-sub">ITALIAN RESTAURANT</div>
+            </div>
+        </div>
 
-        <p class="eyebrow">A little taste of Italy</p>
+        <div class="hero">
+            <div class="eyebrow">Benvenuti</div>
 
-        <h1>Good food.<br>Good mood.</h1>
+            <h1>Good food.<br>Good mood.</h1>
 
-        <p class="description">
-            Welcome to Bella Ciao.
-            Ask our AI waiter about dishes,
-            ingredients and prices from our menu.
-        </p>
+            <p>
+                Discover the taste of Italy.
+                Our AI waiter is here to help
+                you explore our menu and find
+                something delicious.
+            </p>
+        </div>
 
-        <div class="divider"></div>
+        <div class="sidebar-divider"></div>
 
-        <p class="section-title">HERE TO HELP YOU</p>
+        <div class="sidebar-heading">HOW I CAN HELP</div>
 
         <div class="feature">
             <div class="feature-icon">🍕</div>
             <div>
-                <b>Explore the menu</b><br>
-                Discover delicious dishes.
+                <strong>Explore our menu</strong>
+                <p>Discover available dishes.</p>
             </div>
         </div>
 
         <div class="feature">
             <div class="feature-icon">€</div>
             <div>
-                <b>Check prices</b><br>
-                Ask about menu prices.
+                <strong>Check food prices</strong>
+                <p>Find prices from our menu.</p>
             </div>
         </div>
 
         <div class="feature">
-            <div class="feature-icon">🌍</div>
+            <div class="feature-icon">🥗</div>
             <div>
-                <b>Your language</b><br>
-                English, Italian or Bengali.
+                <strong>Find your favourite</strong>
+                <p>Ask about ingredients and options.</p>
             </div>
         </div>
 
         <div class="sidebar-bottom">
-
-            <div class="online">
-                <span class="dot"></span>
+            <div class="online-badge">
+                <span class="online-dot"></span>
                 AI Waiter Online
             </div>
-
-            <p class="sidebar-note">
-                Our AI assistant is ready to help
-                you explore the Bella Ciao menu.
-            </p>
-
         </div>
 
     </aside>
 
 
-    <!-- CHAT PANEL -->
-
-    <section class="chat">
+    <main class="chat-area">
 
         <header class="header">
 
-            <div class="restaurant">
-
-                <div class="restaurant-avatar">🍽️</div>
+            <div class="restaurant-info">
+                <div class="restaurant-icon">🍽️</div>
 
                 <div>
-                    <div class="restaurant-name">
-                        Bella Ciao
-                    </div>
-
+                    <div class="restaurant-name">Bella Ciao</div>
                     <div class="restaurant-status">
-                        <span style="color:#26965c">●</span>
-                        AI Waiter · Online
+                        <span class="status-dot">●</span>
+                        Your AI Waiter
                     </div>
                 </div>
-
             </div>
 
-            <div class="badge">
-                MENU ASSISTANT
-            </div>
+            <div class="ai-label">AI ASSISTANT</div>
 
         </header>
 
 
-        <!-- CHAT MESSAGES -->
-
         <div class="messages" id="messages">
 
-            <div class="date-label">
-                TODAY
-            </div>
+            <div class="date-label">TODAY</div>
 
             <div class="message-row">
 
-                <div class="message-avatar">🍽️</div>
+                <div class="avatar">🍽️</div>
 
                 <div class="message-content">
 
@@ -563,16 +713,14 @@ textarea {
                     </div>
 
                     <div class="bubble">
-                        Ciao! 👋 Welcome to Bella Ciao.
+                        Ciao! 👋 Welcome to Bella Ciao!
 
-                        I'm your AI waiter.
-                        What would you like to know
-                        about our menu today?
+                        I'm your AI waiter. I can help you explore our menu, check food prices and answer questions about our dishes.
+
+                        What would you like to know today?
                     </div>
 
-                    <div class="time">
-                        Just now
-                    </div>
+                    <div class="time">Just now</div>
 
                 </div>
 
@@ -581,29 +729,25 @@ textarea {
         </div>
 
 
-        <!-- QUICK QUESTIONS -->
+        <section class="suggestions">
 
-        <div class="suggestions">
-
-            <p class="suggestion-title">
-                QUICK QUESTIONS
-            </p>
+            <div class="suggestion-title">TRY ASKING</div>
 
             <div class="suggestion-list">
 
                 <button class="suggestion"
-                    data-question="What dishes are available?">
-                    🍴 Explore menu
+                    data-question="What dishes are available in your menu?">
+                    🍕 Explore menu
                 </button>
 
                 <button class="suggestion"
-                    data-question="What is the price of pizza?">
+                    data-question="What are your pizza prices?">
                     💶 Food prices
                 </button>
 
                 <button class="suggestion"
                     data-question="Do you have vegetarian options?">
-                    🥬 Vegetarian
+                    🥗 Vegetarian
                 </button>
 
                 <button class="suggestion"
@@ -611,71 +755,133 @@ textarea {
                     🇮🇹 Italiano
                 </button>
 
+                <button class="suggestion"
+                    data-question="তোমাদের মেনুতে কী কী খাবার আছে?">
+                    🇧🇩 বাংলা
+                </button>
+
             </div>
 
-        </div>
+        </section>
 
 
-        <!-- MESSAGE INPUT -->
+        <footer class="input-area">
 
-        <footer class="composer-area">
-
-            <form class="composer" id="chatForm">
+            <form class="input-box" id="chatForm">
 
                 <textarea
                     id="question"
-                    placeholder="Ask me about our menu..."
+                    placeholder="Ask anything about our menu..."
                     rows="1"
                     maxlength="2000"
-                    required>
-                </textarea>
+                    enterkeyhint="send"
+                    required></textarea>
 
                 <button
-                    type="submit"
                     class="send-btn"
-                    id="sendBtn">
+                    id="sendBtn"
+                    type="submit">
                     ➤
                 </button>
 
             </form>
 
-            <p class="hint">
-                AI can make mistakes. Please confirm important details with our staff.
-            </p>
+            <div class="footer-note">
+                Powered by Bella Ciao AI · Please confirm important details with our staff.
+            </div>
 
         </footer>
 
-    </section>
+    </main>
 
+</div>
 </div>
 
 
 <script>
 
-/* ==================================
-   RESTAURANT API CONFIGURATION
-================================== */
+/* =================================
+   API CONFIGURATION
+================================= */
 
 const API_URL =
 "https://restaurant-ai-waiter-api.onrender.com/api/chat/rest_8aaabe0cd707";
 
 
-/* ==================================
+/* =================================
    ELEMENTS
-================================== */
+================================= */
 
+const app = document.getElementById("app");
 const messages = document.getElementById("messages");
-
 const form = document.getElementById("chatForm");
-
 const input = document.getElementById("question");
-
 const sendBtn = document.getElementById("sendBtn");
 
 
-/* ==================================
+/* =================================
+   MOBILE VIEWPORT FIX
+================================= */
+
+if (window.visualViewport) {
+
+    const viewport = window.visualViewport;
+
+    function updateViewport() {
+
+        if (window.innerWidth <= 600) {
+
+            app.style.height = viewport.height + "px";
+
+            app.style.position = "fixed";
+
+            app.style.top = viewport.offsetTop + "px";
+
+            app.style.left = "0";
+
+            app.style.right = "0";
+
+        } else {
+
+            app.style.height = "";
+
+            app.style.position = "";
+
+            app.style.top = "";
+
+        }
+
+    }
+
+    viewport.addEventListener("resize", updateViewport);
+
+    viewport.addEventListener("scroll", updateViewport);
+
+    window.addEventListener("resize", updateViewport);
+
+    updateViewport();
+
+}
+
+
+/* =================================
+   SCROLL CHAT TO BOTTOM
+================================= */
+
+function scrollToBottom() {
+
+    requestAnimationFrame(() => {
+
+        messages.scrollTop = messages.scrollHeight;
+
+    });
+
+}
+
+
+/* =================================
    TIME
-================================== */
+================================= */
 
 function getTime() {
 
@@ -687,24 +893,25 @@ function getTime() {
 }
 
 
-/* ==================================
+/* =================================
    ADD MESSAGE
-================================== */
+================================= */
 
-function addMessage(text, sender, error = false) {
+function addMessage(text, sender, isError = false) {
 
     const row = document.createElement("div");
 
-    row.className =
-        "message-row " +
-        (sender === "user" ? "user" : "");
+    row.className = "message-row";
 
+    if (sender === "user") {
+        row.classList.add("user");
+    }
 
     if (sender !== "user") {
 
         const avatar = document.createElement("div");
 
-        avatar.className = "message-avatar";
+        avatar.className = "avatar";
 
         avatar.textContent = "🍽️";
 
@@ -712,11 +919,9 @@ function addMessage(text, sender, error = false) {
 
     }
 
-
     const content = document.createElement("div");
 
     content.className = "message-content";
-
 
     if (sender !== "user") {
 
@@ -724,26 +929,23 @@ function addMessage(text, sender, error = false) {
 
         senderName.className = "sender";
 
-        senderName.textContent =
-            "Bella Ciao · AI Waiter";
+        senderName.textContent = "Bella Ciao · AI Waiter";
 
         content.appendChild(senderName);
 
     }
 
-
     const bubble = document.createElement("div");
 
     bubble.className = "bubble";
 
-    if (error) {
+    bubble.textContent = text;
+
+    if (isError) {
         bubble.style.color = "#b54747";
     }
 
-    bubble.textContent = text;
-
     content.appendChild(bubble);
-
 
     const time = document.createElement("div");
 
@@ -753,19 +955,18 @@ function addMessage(text, sender, error = false) {
 
     content.appendChild(time);
 
-
     row.appendChild(content);
 
     messages.appendChild(row);
 
-    messages.scrollTop = messages.scrollHeight;
+    scrollToBottom();
 
 }
 
 
-/* ==================================
-   TYPING ANIMATION
-================================== */
+/* =================================
+   TYPING INDICATOR
+================================= */
 
 function showTyping() {
 
@@ -775,18 +976,15 @@ function showTyping() {
 
     row.id = "typing";
 
-
     const avatar = document.createElement("div");
 
-    avatar.className = "message-avatar";
+    avatar.className = "avatar";
 
     avatar.textContent = "🍽️";
-
 
     const content = document.createElement("div");
 
     content.className = "message-content";
-
 
     const sender = document.createElement("div");
 
@@ -794,14 +992,17 @@ function showTyping() {
 
     sender.textContent = "Bella Ciao · AI Waiter";
 
-
     const bubble = document.createElement("div");
 
-    bubble.className = "bubble typing";
+    bubble.className = "bubble typing-bubble";
 
-    bubble.innerHTML =
-        "<span></span><span></span><span></span>";
+    for (let i = 0; i < 3; i++) {
 
+        const dot = document.createElement("span");
+
+        bubble.appendChild(dot);
+
+    }
 
     content.appendChild(sender);
 
@@ -813,14 +1014,21 @@ function showTyping() {
 
     messages.appendChild(row);
 
-    messages.scrollTop = messages.scrollHeight;
+    scrollToBottom();
 
 }
 
 
-/* ==================================
-   SEND MESSAGE TO FASTAPI
-================================== */
+function removeTyping() {
+
+    document.getElementById("typing")?.remove();
+
+}
+
+
+/* =================================
+   API REQUEST
+================================= */
 
 async function sendMessage(question) {
 
@@ -830,102 +1038,112 @@ async function sendMessage(question) {
         return;
     }
 
-
-    // Show customer message
-
     addMessage(question, "user");
-
-
-    // Clear input
 
     input.value = "";
 
-    input.style.height = "30px";
-
-
-    // Disable send button
+    input.style.height = "40px";
 
     sendBtn.disabled = true;
 
-
-    // Show typing
-
     showTyping();
-
 
     try {
 
-        const response = await fetch(API_URL, {
+        const controller = new AbortController();
 
-            method: "POST",
+        const timeout = setTimeout(() => {
+            controller.abort();
+        }, 90000);
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+        let response;
 
-            body: JSON.stringify({
+        try {
 
-                question: question
+            response = await fetch(API_URL, {
 
-            })
+                method: "POST",
 
-        });
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
+                body: JSON.stringify({
+                    question: question
+                }),
+
+                signal: controller.signal
+
+            });
+
+        } finally {
+
+            clearTimeout(timeout);
+
+        }
 
         const data = await response.json();
 
-        document.getElementById("typing")?.remove();
-
+        removeTyping();
 
         if (!response.ok) {
 
-            const detail =
-                typeof data.detail === "string"
-                    ? data.detail
-                    : "Something went wrong. Please try again.";
+            const detail = data.detail;
 
-            throw new Error(detail);
+            throw new Error(
+                typeof detail === "string"
+                    ? detail
+                    : "The server could not process your request."
+            );
 
         }
 
+        if (!data.answer) {
 
-        // Show AI response
+            throw new Error("The AI returned an empty response.");
 
-        addMessage(
-            data.answer || "Sorry, I couldn't generate an answer.",
-            "bot"
-        );
+        }
 
+        addMessage(data.answer, "bot");
 
     } catch (error) {
 
-        document.getElementById("typing")?.remove();
+        removeTyping();
 
-        let message = error.message;
+        let errorMessage;
 
-        if (message.toLowerCase().includes("failed to fetch")) {
+        if (error.name === "AbortError") {
 
-            message =
-                "Unable to connect to the AI waiter. Please check your internet connection.";
+            errorMessage =
+                "The server is taking too long to respond. Please try again.";
+
+        } else if (
+            error.message.toLowerCase().includes("failed to fetch")
+        ) {
+
+            errorMessage =
+                "Unable to connect to the server. Please check your internet connection.";
+
+        } else {
+
+            errorMessage = error.message;
 
         }
 
-        addMessage(message, "bot", true);
+        addMessage(errorMessage, "bot", true);
 
     } finally {
 
         sendBtn.disabled = false;
-
-        input.focus();
 
     }
 
 }
 
 
-/* ==================================
+/* =================================
    FORM SUBMISSION
-================================== */
+================================= */
 
 form.addEventListener("submit", function(event) {
 
@@ -936,15 +1154,16 @@ form.addEventListener("submit", function(event) {
 });
 
 
-/* ==================================
-   ENTER KEY
-================================== */
+/* =================================
+   KEYBOARD
+================================= */
 
 input.addEventListener("keydown", function(event) {
 
     if (
         event.key === "Enter" &&
-        !event.shiftKey
+        !event.shiftKey &&
+        !event.isComposing
     ) {
 
         event.preventDefault();
@@ -956,23 +1175,23 @@ input.addEventListener("keydown", function(event) {
 });
 
 
-/* ==================================
-   AUTO RESIZE TEXTAREA
-================================== */
+/* =================================
+   AUTO RESIZE INPUT
+================================= */
 
 input.addEventListener("input", function() {
 
-    input.style.height = "30px";
+    input.style.height = "40px";
 
     input.style.height =
-        Math.min(input.scrollHeight, 100) + "px";
+        Math.min(input.scrollHeight, 110) + "px";
 
 });
 
 
-/* ==================================
-   QUICK QUESTION BUTTONS
-================================== */
+/* =================================
+   QUICK QUESTIONS
+================================= */
 
 document.querySelectorAll(".suggestion").forEach(button => {
 
@@ -983,6 +1202,13 @@ document.querySelectorAll(".suggestion").forEach(button => {
     });
 
 });
+
+
+/* =================================
+   INITIALIZE
+================================= */
+
+window.addEventListener("load", scrollToBottom);
 
 </script>
 
